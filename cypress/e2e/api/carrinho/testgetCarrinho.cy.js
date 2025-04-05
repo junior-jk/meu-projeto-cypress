@@ -8,6 +8,8 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
     let token;
     let produtoCriado;
     let produtoCriado2;
+    let quantidadeProduto1;
+    let quantidadeProduto2;
 
     it('Deve cadastrar um usuario, logar, criar produtos e buscar carrinho', () => {
         const userData = {
@@ -45,6 +47,7 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
                 cy.log(`Usuario logado: ${userIdUsuario} - ${nomeUsuario}`);
 
                 // Criar produto 1
+                quantidadeProduto1 = faker.number.int({ min: 1, max: 10 });
                 cy.api({
                     method: 'POST',
                     url: '/produtos',
@@ -53,7 +56,7 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
                         nome: faker.commerce.productName(),
                         preco: faker.number.int({ min: 10, max: 100 }),
                         descricao: faker.commerce.productDescription(),
-                        quantidade: faker.number.int({ min: 1, max: 10 }),
+                        quantidade: quantidadeProduto1
                     }
                 }).then((response) => {
                     expect(response.status).to.eq(201);
@@ -62,6 +65,7 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
                     cy.log(`Produto criado: ${produtoCriado}`);
 
                     // Criar produto 2
+                    quantidadeProduto2 = faker.number.int({ min: 1, max: 10 });
                     cy.api({
                         method: 'POST',
                         url: '/produtos',
@@ -70,7 +74,7 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
                             nome: faker.commerce.productName(),
                             preco: faker.number.int({ min: 10, max: 100 }),
                             descricao: faker.commerce.productDescription(),
-                            quantidade: faker.number.int({ min: 1, max: 10 }),
+                            quantidade: quantidadeProduto2
                         }
                     }).then((response) => {
                         expect(response.status).to.eq(201);
@@ -85,8 +89,8 @@ describe('Cadastrar Usuario, fazer login, criar produtos e buscar carrinho', () 
                             headers: { Authorization: `${token}` },
                             body: {
                                 produtos: [
-                                    { idProduto: produtoCriado, quantidade: 1 },
-                                    { idProduto: produtoCriado2, quantidade: 2 }
+                                    { idProduto: produtoCriado, quantidade: quantidadeProduto1 },
+                                    { idProduto: produtoCriado2, quantidade: quantidadeProduto2 }
                                 ]
                             }
                         }).then((response) => {

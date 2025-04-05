@@ -29,6 +29,7 @@ describe('Deletar carrinho', () => {
             userIdUsuario = response.body._id;
             emailUsuario = userData.email;
             password = userData.password;
+            nomeUsuario = userData.nome;
             cy.log(`Usuário criado: ${userIdUsuario}`);
 
             // Login com o usuário criado

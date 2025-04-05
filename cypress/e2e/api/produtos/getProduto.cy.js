@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
 
-describe('Testes de API - ServRest', () => {
+describe('Testes Buscar Produtos na API ServeRest', () => {
     let userIdUsuario;
     let nomeUsuario;
     let emailUsuario;
@@ -10,7 +10,7 @@ describe('Testes de API - ServRest', () => {
     let produtoId;
 
     before(() => {
-        // Criar usuário
+        // Criar usuario
         const usuario = {
             nome: faker.person.fullName(),
             email: faker.internet.email(),

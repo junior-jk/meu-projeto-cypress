@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinho', () => {
+describe('Cadastrar usuario, fazer login, criar produtos e adicionar ao carrinho', () => {
     let userIdUsuario;
     let nomeUsuario;
     let emailUsuario;
@@ -19,7 +19,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
             administrador: 'true'
         };
 
-        // Criar usuário
+        // Criar usuario
         cy.api({
             method: 'POST',
             url: '/usuarios',
@@ -32,7 +32,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
             password = userData.password;
             cy.log(`Usuário criado: ${userIdUsuario} - ${nomeUsuario}`);
 
-            // Login com o usuário criado
+            // Login com o usuario criado
             return cy.api({
                 method: 'POST',
                 url: '/login',
