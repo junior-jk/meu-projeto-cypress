@@ -55,7 +55,7 @@ describe('Deletar um carrinho', () => {
                     nome: faker.commerce.productName(),
                     preco: faker.number.int({ min: 1, max: 10 }),
                     descricao: faker.commerce.productDescription(),
-                    quantidade: quantidadeProduto1 // Definir quantidade fixa para evitar erros
+                    quantidade: quantidadeProduto1 
                 }
             });
         }).then((response) => {

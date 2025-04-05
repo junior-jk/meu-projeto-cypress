@@ -32,7 +32,7 @@ let token;
 
         cy.api({
             method: 'Post',
-            url: '/usuarios', // Usando o _id do usuário criado
+            url: '/usuarios', // Usando o _id do usuario criado
             body: userId
         }).then((response) => {
             nomeUsuario = userId.nome;
@@ -42,7 +42,7 @@ let token;
 
         cy.api({
             method: 'Post',
-            url: '/login', // Usando o _id do usuário criado
+            url: '/login', // Usando o _id do usuario criado
             body: {email: emailUsuario, 
                 password: password, }, 
                 }).then((response) => {
@@ -50,9 +50,9 @@ let token;
                     
         cy.api({
             method: 'GET',
-            url: `/usuarios/${userIdUsuario}`, // Usando o _id do usuário criado
+            url: `/usuarios/${userIdUsuario}`, // Usando o _id do usuario criado
             headers: {
-                Authorization: token // Enviando o token de autenticação
+                Authorization: token // Enviando o token de autenticacao
             }
         }).then((response) => {
             expect(response.status).to.eq(200);
@@ -66,7 +66,7 @@ let token;
     it('GET - Deve falhar id inexistente', () => {
         cy.api({
             method: 'GET',
-            url: '/usuarios/12345', // Usando o _id do usuário criado
+            url: '/usuarios/12345', // Usando o _id do usuario criado
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);

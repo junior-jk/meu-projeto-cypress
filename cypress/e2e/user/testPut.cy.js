@@ -87,7 +87,7 @@ describe('Cadastrar, logar e atualizar um usuário', () => {
     it('GET - Deve falhar id inexistente', () => {
         cy.api({
             method: 'GET',
-            url: '/usuarios/1278345', // Usando o _id do usuário criado
+            url: '/usuarios/1278345', // Usando o _id do usuario criado
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);

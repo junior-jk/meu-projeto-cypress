@@ -8,6 +8,8 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
     let token;
     let produtoCriado;
     let produtoCriado2;
+    let quantidadeProduto1;
+    let quantidadeProduto2;
 
     before(() => {
         const userData = {
@@ -45,6 +47,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
             cy.log(`Token gerado: ${token}`);
 
             // Criar produto 1
+            quantidadeProduto1 = faker.number.int({ min: 1, max: 10 }); // Garantindo quantidade suficiente
             return cy.api({
                 method: 'POST',
                 url: '/produtos',
@@ -53,7 +56,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
                     nome: faker.commerce.productName(),
                     preco: faker.number.int({ min: 10, max: 100 }),
                     descricao: faker.commerce.productDescription(),
-                    quantidade: faker.number.int({ min: 1, max: 10 }),
+                    quantidade: quantidadeProduto1
                 }
             });
         }).then((response) => {
@@ -62,6 +65,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
             cy.log(`Produto 1 criado: ${produtoCriado}`);
 
             // Criar produto 2
+            quantidadeProduto2 = faker.number.int({ min: 1, max: 10 });
             return cy.api({
                 method: 'POST',
                 url: '/produtos',
@@ -70,7 +74,7 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
                     nome: faker.commerce.productName(),
                     preco: faker.number.int({ min: 10, max: 100 }),
                     descricao: faker.commerce.productDescription(),
-                    quantidade: faker.number.int({ min: 1, max: 10 }),
+                    quantidade: quantidadeProduto2
                 }
             });
         }).then((response) => {
@@ -85,8 +89,8 @@ describe('Cadastrar usuário, fazer login, criar produtos e adicionar ao carrinh
                 headers: { Authorization: token },
                 body: {
                     produtos: [
-                        { idProduto: produtoCriado, quantidade: 1 },
-                        { idProduto: produtoCriado2, quantidade: 2 }
+                        { idProduto: produtoCriado, quantidade: quantidadeProduto1 },
+                        { idProduto: produtoCriado2, quantidade: quantidadeProduto2 }
                     ]
                 }
             });

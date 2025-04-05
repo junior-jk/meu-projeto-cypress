@@ -31,7 +31,7 @@ describe('Criar, logar, verificar e deletar um usuario', () => {
             cy.log(`Usuario criado: ${emailUsuario} - ID: ${userIdUsuario}`);
 
 
-            // 🔹 Fazer login com o usuário criado
+            // 🔹 Fazer login com o usuario criado
         cy.api({
             method: 'POST',
             url: '/login',
@@ -44,7 +44,7 @@ describe('Criar, logar, verificar e deletar um usuario', () => {
 
             token = response.body.authorization;
 
-            // 🔹 Verificar se o usuário foi criado com o GET
+            // 🔹 Verificar se o usuario foi criado com o GET
         cy.api({
                 method: 'GET',
                 url: `/usuarios/${userIdUsuario}`,
@@ -52,7 +52,7 @@ describe('Criar, logar, verificar e deletar um usuario', () => {
                     Authorization: token 
                 }
             }).then((response) => {
-                expect(response.status).to.eq(200); // Usuário deve ser encontrado
+                expect(response.status).to.eq(200); // Usuario deve ser encontrado
                 cy.log(`Usuário encontrado com ID: ${userIdUsuario}`);
             });
 

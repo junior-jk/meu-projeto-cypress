@@ -12,7 +12,7 @@ describe('Cadastrar e Atualizar Produto', () => {
         const userData = {
             nome: faker.person.fullName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),  // Melhor definir um valor fixo para evitar caracteres especiais
+            password: faker.internet.password(),  
             administrador: 'true'
         };
 
@@ -46,15 +46,15 @@ describe('Cadastrar e Atualizar Produto', () => {
     it('POST - Cadastrar um novo produto', () => {
         const produto = {
             nome: faker.commerce.productName(),
-            preco: faker.number.int(),  // Definir faixa válida
+            preco: faker.number.int(), 
             descricao: faker.commerce.productDescription(),
-            quantidade: faker.number.int(),  // Definir faixa válida
+            quantidade: faker.number.int(),  
         };
 
         cy.api({
             method: 'POST',
             url: '/produtos',
-            headers: { Authorization:`${token}`},// Token corrigido
+            headers: { Authorization:`${token}`},  
             body: produto
         }).then((response) => {
             expect(response.status).to.eq(201);
@@ -77,7 +77,7 @@ describe('Cadastrar e Atualizar Produto', () => {
 
         cy.api({
             method: 'PUT',
-            url: `/produtos/${produtoCriado}`,  // Corrigido para usar `produtoCriado`
+            url: `/produtos/${produtoCriado}`,  
             headers: { Authorization: `${token}` },
             body: produtoAtualizado
         }).then((response) => {

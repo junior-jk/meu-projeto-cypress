@@ -12,7 +12,7 @@ describe('Cadastrar e Atualizar Produto', () => {
         const userData = {
             nome: faker.person.fullName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),  // Melhor definir um valor fixo para evitar caracteres especiais
+            password: faker.internet.password(),  
             administrador: 'true'
         };
 
