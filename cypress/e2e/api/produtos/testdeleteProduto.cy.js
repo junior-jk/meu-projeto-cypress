@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker';
+import { de, faker } from '@faker-js/faker';
 
-describe('Cadastrar e Atualizar Produto', () => {
+describe('Deletar Produto', () => {
     let userIdUsuario;
     let nomeUsuario;
     let emailUsuario;
@@ -65,8 +65,9 @@ describe('Cadastrar e Atualizar Produto', () => {
 
             produtoCriado = response.body;
             cy.log(`Produto criado: ${produto.nome} - ID: ${produtoCriado._id}`);
-            });
         });
+    });  
+    
     it('DELETE - Deve deletar um produto pelo ID', () => {
         cy.api({
             method: 'DELETE',
@@ -77,15 +78,14 @@ describe('Cadastrar e Atualizar Produto', () => {
             expect(response.body.message).to.eq('Registro excluído com sucesso');    
          });
     });
-    it('GET - Deve buscar os detalhes do produto pelo ID', () => {
+    it('Get - Deve falhar ao buscar o produto pelo ID', () => {
         cy.api({
             method: 'GET',
             url: `/produtos/${produtoCriado._id}`,
-            headers: { Authorization: `${token}` },
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);
             expect(response.body.message).to.eq('Produto não encontrado');
         });
-    })
-});
+    });              
+});       
